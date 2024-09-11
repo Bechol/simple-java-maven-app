@@ -15,9 +15,6 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
                 success {
-                    hipchatSend (color: 'GREEN', notify: true,
-                          message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-                        )
                     emailext (
                               subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                               body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
