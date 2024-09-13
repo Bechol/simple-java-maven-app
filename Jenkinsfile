@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                bat 'mvn -B -DskipTests clean install'
             }
         }
         stage('Test') {
@@ -19,9 +19,9 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
+        stage('Run') {
             steps {
-                bat './jenkins/scripts/deliver.sh'
+                bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
             }
         }
     }
