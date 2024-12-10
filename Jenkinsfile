@@ -21,7 +21,13 @@ pipeline {
         }
         stage('Run') {
             steps {
-                bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
+                script {
+                    if (isUnix()) {
+                        sh 'java -jar target/my-app-1.0-SNAPSHOT.jar' // Unix-based command
+                    } else {
+                        bat 'java -jar target/my-app-1.0-SNAPSHOT.jar' // Windows command
+                    }
+                }
             }
         }
     }
